@@ -30,7 +30,7 @@ RegisterCommand("npc", function()
                             icon = 'marker',
                             description = 'Click to teleport',
                             onSelect = function()
-                               SetEntityCoords(PlayerPedId(), locations[i].coords.x, locations[i].coords.y, locations[i].coords.z)
+                               SetEntityCoords(cache.ped, locations[i].coords.x, locations[i].coords.y, locations[i].coords.z)
                                lib.notify({
                                     title = 'Teleport',
                                     description = 'Teleported to ' .. locations[i].name,
@@ -191,7 +191,7 @@ AddEventHandler("resourceStart", function(list)
                 CreateThread(function()
                     while hasDrawText do
                         Wait(0)
-                        local pedC = GetEntityCoords(PlayerPedId())
+                        local pedC = GetEntityCoords(cache.ped)
                         local controlCode = keys[npcData.drawTextKey]
                         if #(pedC - vec3(npcData.coords.x, npcData.coords.y, npcData.coords.z)) <= 10 then
                             local hasJobAndGrade = false
