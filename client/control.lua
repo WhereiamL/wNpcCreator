@@ -23,7 +23,7 @@ function CreateNPC(model, stored)
     IsPlacingNPC = true
     lib.requestModel(model)
 
-    previewedNPC = CreatePed(4, model, GetEntityCoords(PlayerPedId()), heading, false, true)
+    previewedNPC = CreatePed(4, model, GetEntityCoords(cache.ped), heading, false, true)
 
     SetEntityAlpha(previewedNPC, 150, false)
     SetEntityCollision(previewedNPC, false, false)
@@ -43,13 +43,12 @@ function CreateNPC(model, stored)
         if hit then
             SetEntityCoords(previewedNPC, coords.x, coords.y, coords.z)
             PlaceObjectOnGroundProperly(previewedNPC)
-            local distanceCheck = #(coords - GetEntityCoords(PlayerPedId()))
+            local distanceCheck = #(coords - GetEntityCoords(cache.ped))
 
             if IsControlJustPressed(0, 44) then CancelPlacement() end
 
             if IsControlPressed(0, 174) then -- left arrow
                 heading = heading - 1.0
-                print(heading)
                 SetEntityHeading(previewedNPC, heading)
             end
 
