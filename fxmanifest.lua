@@ -3,7 +3,7 @@ fx_version 'cerulean'
 games {"gta5", "rdr3"}
 
 author "WhereiamL"
-version '1.0.1'
+version '1.0.2'
 
 lua54 'yes'
 
