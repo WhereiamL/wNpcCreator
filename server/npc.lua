@@ -13,16 +13,13 @@ local function hasPermission(source)
         return false
     end
 
-    local playerGroups = xPlayer.getGroups()
+    local playerGroup = xPlayer.getGroup()
 
-    for _, group in ipairs(playerGroups) do
-        for _, adminGroup in ipairs(adminGroups) do
-            if group == adminGroup then
-                return true
-            end
+    for _, adminGroup in ipairs(adminGroups) do
+        if playerGroup == adminGroup then
+            return true
         end
     end
-    return false
 end
 
 RegisterCommand("npcadd", function(src)
