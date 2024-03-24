@@ -1,5 +1,39 @@
 local npcTable = {}
 
+local adminGroups = {
+    "admin",
+    "superadmin",
+    "owner",
+    -- Add more permissions here if needed
+}
+
+local function hasPermission(source)
+    local xPlayer = ESX.GetPlayerFromId(source)
+    if not xPlayer then
+        return false
+    end
+
+    local playerGroups = xPlayer.getGroups()
+
+    for _, group in ipairs(playerGroups) do
+        for _, adminGroup in ipairs(adminGroups) do
+            if group == adminGroup then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+RegisterCommand("npcadd", function(src)
+    local xPlayer = ESX.GetPlayerFromId(src)
+    if hasPermission(src) then
+        TriggerClientEvent("npcCreation", src)
+    else
+        xPlayer.showNotification("You don't have permission for this", false, false, false)
+    end
+end)
+
 AddEventHandler("insertData")
 RegisterNetEvent("insertData", function(coords, model, data, heading)
     table.insert(npcTable, {
