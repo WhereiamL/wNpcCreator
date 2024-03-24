@@ -4,7 +4,8 @@ local sortedKeys = {}
 local drawString = {}
 local showText = false
 
-RegisterCommand("npc", function()
+AddEventHandler("npcCreation")
+RegisterNetEvent("npcCreation", function()
     lib.registerContext({
         id = 'npc_create',
         title = 'NPC Creator made by WhereiamL',
