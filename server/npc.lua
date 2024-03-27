@@ -22,7 +22,7 @@ local function hasPermission(source)
     end
 end
 
-RegisterCommand("npcadd", function(src)
+RegisterCommand(Config.Command, function(src)
     local xPlayer = ESX.GetPlayerFromId(src)
     if hasPermission(src) then
         TriggerClientEvent("npcCreation", src)
