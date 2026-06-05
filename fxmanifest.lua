@@ -1,12 +1,37 @@
 fx_version 'cerulean'
 
-games {"gta5", "rdr3"}
+games { 'gta5' }
 
-author "WhereiamL"
-version '1.0.2'
+author 'WhereiamL'
+description 'Framework-agnostic NPC creator (ESX / QBCore / QBox) with SQL persistence'
+version '2.0.0'
 
 lua54 'yes'
 
-client_script "client/*.lua"
-server_script "server/*.lua"
-shared_scripts 	{'@es_extended/imports.lua', '@ox_lib/init.lua'}
+shared_scripts {
+    '@ox_lib/init.lua',
+    'config.lua',
+    'shared/bridge.lua',
+}
+
+client_scripts {
+    'client/bridge.lua',
+    'client/utils.lua',
+    'client/npc.lua',
+    'client/placement.lua',
+    'client/menu.lua',
+}
+
+server_scripts {
+    '@oxmysql/lib/MySQL.lua',
+    'server/bridge.lua',
+    'server/database.lua',
+    'server/main.lua',
+}
+
+dependencies {
+    'ox_lib',
+    'oxmysql',
+}
+
+provide 'wNpcCreator'
